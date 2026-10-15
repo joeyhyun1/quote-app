@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { calculateQuote, Alloy } from '@/lib/pricing';
 import { supabase } from '@/lib/supabase';
+import Link from 'next/link';
 
 export default function QuotePage() {
   const [alloy, setAlloy] = useState<Alloy>('6061');
@@ -54,7 +55,7 @@ export default function QuotePage() {
   const money = (n: number) =>
     n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
-  const inputClass = 'border border-gray-400 rounded px-2 py-1 ml-2';
+  const inputClass = 'border border-gray-400 rounded px-2 py-1 ml-2 bg-white text-black dark:bg-black dark:text-white';
 
   return (
     <div className="flex flex-col gap-4 p-6 max-w-md">
@@ -123,6 +124,12 @@ export default function QuotePage() {
 
             {orderMessage && <p>{orderMessage}</p>}
       </div>
+      <div>
+        <Link href="/orders" className="text-blue-500 hover:underline">
+            View Orders
+        </Link>
+      </div>
     </div>
   );
+
 }
